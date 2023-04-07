@@ -8,37 +8,27 @@ interface fetchDataType {
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
   const [emailTouched, setEmailTouched] = useState(false);
-  const [emailError, setEmailError] = useState("");
 
   const [password, setPassword] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
-  const [passwordError, setPasswordError] = useState("");
 
-  const emailIsValid = emailTouched && emailError === "";
-  const passwordIsValid = passwordTouched && passwordError === "";
-  const isValid = emailIsValid && passwordIsValid;
+  const emailValid = email.trim().includes("@") !== false;
+  const emailInputInvalid = !emailValid && emailTouched;
+
+  const passwordValid = password.trim().length >= 8;
+  const passwordInputInvalid = !passwordValid && passwordTouched;
+
   const navigate = useNavigate();
+
   const emailChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    const inputValue = event.target.value;
-
-    setEmail(() => inputValue);
-    if (inputValue.trim().includes("@")) {
-      setEmail(() => inputValue.trim());
-      setEmailError("");
-    } else
-      setEmailError("공백없이 @를 포함한 올바른 이메일 주소를 입력해주세요.");
+    setEmail(() => event.target.value);
   };
   const passwordChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    const inputValue = event.target.value;
-    setPassword(() => inputValue);
-    if (inputValue.trim().length >= 8) {
-      setPassword(() => inputValue.trim());
-      setPasswordError("");
-    } else setPasswordError("공백없이 8글자 이상의 비밀번호를 입력해주세요.");
+    setPassword(() => event.target.value);
   };
   const emailBlurHandler = () => {
     setEmailTouched(true);
@@ -48,7 +38,7 @@ const SignIn: React.FC = () => {
   };
   const inputDataSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!isValid) return;
+    if (!emailValid || !passwordValid) return;
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -70,6 +60,7 @@ const SignIn: React.FC = () => {
         }
         const responseData = await response.json();
         localStorage.setItem("accessToken", responseData.access_token);
+        alert("로그인에 성공하셨습니다.");
         navigate("/");
       } catch (error) {
         console.error("Error", error);
@@ -82,7 +73,7 @@ const SignIn: React.FC = () => {
     <button
       data-testid="signin-button"
       className={classes.btn}
-      disabled={!isValid}
+      disabled={!emailValid || !passwordValid}
     >
       로그인
     </button>
@@ -91,27 +82,33 @@ const SignIn: React.FC = () => {
   return (
     <section className={classes.signin_frame}>
       <form onSubmit={inputDataSubmitHandler} className={classes.form}>
-        <label htmlFor="text">Email address</label>
+        <label htmlFor="email">Email address</label>
         <input
           type="text"
+          id="email"
           value={email}
           data-testid="email-input"
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
         />
-        {emailTouched && emailError && (
-          <div className={classes.errors}>{emailError}</div>
+        {emailInputInvalid && (
+          <div className={classes.errors}>
+            "공백없이 @를 포함한 올바른 이메일 주소를 입력해주세요."
+          </div>
         )}
-        <label htmlFor="text">Password</label>
+        <label htmlFor="password">Password</label>
         <input
           type="text"
+          id="password"
           value={password}
           data-testid="password-input"
           onChange={passwordChangeHandler}
           onBlur={passwordBlurHandler}
         />
-        {passwordTouched && passwordError && (
-          <div className={classes.errors}>{passwordError}</div>
+        {passwordInputInvalid && (
+          <div className={classes.errors}>
+            "공백없이 8글자 이상의 비밀번호를 입력해주세요."
+          </div>
         )}
         {signInBtn}
       </form>

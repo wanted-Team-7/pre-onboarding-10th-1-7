@@ -8,37 +8,26 @@ interface fetchDataType {
 const SignUp: React.FC = () => {
   const [email, setEmail] = useState("");
   const [emailTouched, setEmailTouched] = useState(false);
-  const [emailError, setEmailError] = useState("");
 
   const [password, setPassword] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
-  const [passwordError, setPasswordError] = useState("");
 
-  const emailIsValid = emailTouched && emailError === "";
-  const passwordIsValid = passwordTouched && passwordError === "";
-  const isValid = emailIsValid && passwordIsValid;
+  const emailValid = email.trim().includes("@") !== false;
+  const emailInputInvalid = !emailValid && emailTouched;
+
+  const passwordValid = password.trim().length >= 8;
+  const passwordInputInvalid = !passwordValid && passwordTouched;
+
   const navigate = useNavigate();
   const emailChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    const inputValue = event.target.value;
-
-    setEmail(() => inputValue);
-    if (inputValue.trim().includes("@")) {
-      setEmail(() => inputValue.trim());
-      setEmailError("");
-    } else
-      setEmailError("공백없이 @를 포함한 올바른 이메일 주소를 입력해주세요.");
+    setEmail(() => event.target.value);
   };
   const passwordChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    const inputValue = event.target.value;
-    setPassword(() => inputValue);
-    if (inputValue.trim().length >= 8) {
-      setPassword(() => inputValue.trim());
-      setPasswordError("");
-    } else setPasswordError("공백없이 8글자 이상의 비밀번호를 입력해주세요.");
+    setPassword(() => event.target.value);
   };
   const emailBlurHandler = () => {
     setEmailTouched(true);
@@ -48,7 +37,10 @@ const SignUp: React.FC = () => {
   };
   const inputDataSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!isValid) return;
+    setEmailTouched(true);
+
+    if (!emailValid || !passwordValid) return;
+
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -68,8 +60,9 @@ const SignUp: React.FC = () => {
           const errorResponse = await response.json();
           throw new Error(errorResponse.message);
         }
-        const responseData = await response.json();
+        // const responseData = await response.json();
         // console.log("데이터 전송 완료", responseData);
+        alert("회원 가입을 축하드립니다.");
         navigate("/signin");
       } catch (error) {
         console.error("Error", error);
@@ -82,7 +75,7 @@ const SignUp: React.FC = () => {
     <button
       data-testid="signup-button"
       className={classes.btn}
-      disabled={!isValid}
+      disabled={!emailValid || !passwordValid}
     >
       회원가입
     </button>
@@ -91,27 +84,33 @@ const SignUp: React.FC = () => {
   return (
     <section className={classes.signup_frame}>
       <form onSubmit={inputDataSubmitHandler} className={classes.form}>
-        <label htmlFor="text">Email address</label>
+        <label htmlFor="email">Email address</label>
         <input
           type="text"
+          id="email"
           value={email}
           data-testid="email-input"
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
         />
-        {emailTouched && emailError && (
-          <div className={classes.errors}>{emailError}</div>
+        {emailInputInvalid && (
+          <div className={classes.errors}>
+            "공백없이 @를 포함한 올바른 이메일 주소를 입력해주세요."
+          </div>
         )}
-        <label htmlFor="text">Password</label>
+        <label htmlFor="password">Password</label>
         <input
           type="text"
+          id="password"
           value={password}
           data-testid="password-input"
           onChange={passwordChangeHandler}
           onBlur={passwordBlurHandler}
         />
-        {passwordTouched && passwordError && (
-          <div className={classes.errors}>{passwordError}</div>
+        {passwordInputInvalid && (
+          <div className={classes.errors}>
+            "공백없이 8글자 이상의 비밀번호를 입력해주세요."
+          </div>
         )}
         {signUpBtn}
       </form>
