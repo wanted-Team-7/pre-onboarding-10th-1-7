@@ -1,0 +1,43 @@
+.signin_frame {
+  max-width: 35rem;
+  margin: 0rem auto;
+}
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: 15px;
+  flex-direction: column;
+}
+form label {
+  /* margin-top: 5rem; */
+}
+.email_input_frame {
+  flex-grow: 1;
+  /* flex-basis: 160px; */
+}
+.password_input_frame {
+  flex-grow: 3;
+  /* flex-basis: 200px; */
+}
+.form input {
+  border: 1px solid transparent;
+  border-bottom: 1px solid black;
+  padding: 0.5rem 0.5rem;
+}
+form button {
+  padding: 0.5rem;
+  background-color: #d1bd0a;
+  color: #ffff;
+  border-radius: 5px;
+  border: 1px solid transparent;
+}
+form button:disabled {
+  background-color: grey;
+  color: #ffff;
+}
+.errors {
+  font-size: 0.8rem;
+  color: red;
+  padding: 0rem;
+}

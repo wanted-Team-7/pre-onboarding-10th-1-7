@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import classes from "./SignUp.module.css";
+import classes from "./SignIn.module.css";
 interface fetchDataType {
   email: string;
   password: string;
 }
-const SignUp: React.FC = () => {
+const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
   const [emailTouched, setEmailTouched] = useState(false);
   const [emailError, setEmailError] = useState("");
@@ -52,7 +52,7 @@ const SignUp: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://www.pre-onboarding-selection-task.shop/auth/signup",
+          "https://www.pre-onboarding-selection-task.shop/auth/signin",
           {
             method: "POST",
             headers: {
@@ -69,8 +69,8 @@ const SignUp: React.FC = () => {
           throw new Error(errorResponse.message);
         }
         const responseData = await response.json();
-        // console.log("데이터 전송 완료", responseData);
-        navigate("/signin");
+        localStorage.setItem("accessToken", responseData.access_token);
+        navigate("/");
       } catch (error) {
         console.error("Error", error);
       }
@@ -78,18 +78,18 @@ const SignUp: React.FC = () => {
     fetchData();
   };
 
-  const signUpBtn = (
+  const signInBtn = (
     <button
-      data-testid="signup-button"
+      data-testid="signin-button"
       className={classes.btn}
       disabled={!isValid}
     >
-      회원가입
+      로그인
     </button>
   );
 
   return (
-    <section className={classes.signup_frame}>
+    <section className={classes.signin_frame}>
       <form onSubmit={inputDataSubmitHandler} className={classes.form}>
         <label htmlFor="text">Email address</label>
         <input
@@ -113,9 +113,9 @@ const SignUp: React.FC = () => {
         {passwordTouched && passwordError && (
           <div className={classes.errors}>{passwordError}</div>
         )}
-        {signUpBtn}
+        {signInBtn}
       </form>
     </section>
   );
 };
-export default SignUp;
+export default SignIn;
