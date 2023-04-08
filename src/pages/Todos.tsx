@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import TodoItems from "../components/TodoItems";
-
+import classes from "./Todos.module.css";
+import NewTodo from "../components/NewTodo";
 interface TodoItem {
   id: number;
   todo: string;
@@ -36,7 +37,8 @@ const Todos: React.FC = () => {
   useEffect(() => {
     getTodos();
   }, []);
-  const createTodo = async () => {
+  const createTodo = async (todo: TodoItem) => {
+    console.log(todo);
     try {
       const response = await fetch(
         "https://www.pre-onboarding-selection-task.shop/todos",
@@ -46,7 +48,8 @@ const Todos: React.FC = () => {
             authorization: `Bearer ${localStorage.getItem("access_token")}`,
             "Content-type": "application/json",
           },
-          body: JSON.stringify({ todo: newTodoRef.current!.value }),
+          body: JSON.stringify({ todo: todo }),
+          // body: JSON.stringify({ todo: newTodoRef.current!.value }),
         }
       );
       if (!response.ok) {
@@ -56,8 +59,6 @@ const Todos: React.FC = () => {
     } catch (error: any) {
       console.error(error.message);
     }
-    newTodoRef.current!.value = "";
-
     getTodos();
   };
   const updateTodo = async (
@@ -110,32 +111,29 @@ const Todos: React.FC = () => {
     }
     getTodos();
   };
-  const todoSubmitHandler = (e: React.FormEvent) => {
-    e.preventDefault();
-    const newTodo = newTodoRef.current!.value;
-    if (newTodo.trim() === "") return;
-    createTodo();
-  };
+  // const todoSubmitHandler = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   const newTodo = newTodoRef.current!.value;
+  //   if (newTodo.trim() === "") return;
+  //   createTodo();
+  // };
 
   console.log(todoItems);
   return (
     <section>
-      <form onSubmit={todoSubmitHandler}>
-        <input data-testid="new-todo-input" type="text" ref={newTodoRef} />
-        <button data-testid="new-todo-add-button" type="submit">
-          추가
-        </button>
-      </form>
+      <NewTodo createTodo={createTodo} />
       <article>
-        {todoItems &&
-          todoItems.map((el) => (
-            <TodoItems
-              key={el.id}
-              todoItem={el}
-              onDelete={deleteTodo}
-              onUpdate={updateTodo}
-            />
-          ))}
+        <ul className={classes.todos}>
+          {todoItems &&
+            todoItems.map((el) => (
+              <TodoItems
+                key={el.id}
+                todoItem={el}
+                onDelete={deleteTodo}
+                onUpdate={updateTodo}
+              />
+            ))}
+        </ul>
       </article>
     </section>
   );

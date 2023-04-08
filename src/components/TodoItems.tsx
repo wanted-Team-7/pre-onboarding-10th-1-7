@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import classes from "./TodoItem.module.css";
 interface TodoItem {
   id: number;
   todo: string;
@@ -32,7 +33,7 @@ const TodoItems: React.FC<TodoItemsProps> = ({
     onUpdate(todoItem.id, todoItem.todo, !todoItem.isCompleted);
   };
   return (
-    <li>
+    <li className={classes.item}>
       <label>
         <input
           type="checkbox"
