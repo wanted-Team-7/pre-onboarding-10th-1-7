@@ -3,6 +3,7 @@ import { Router as RemixRouter } from "@remix-run/router/dist/router";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
+import Todos from "./pages/Todos";
 
 interface RouterElement {
   id: number;
@@ -28,6 +29,12 @@ const routerData: RouterElement[] = [
     id: 2,
     path: "/signin",
     element: <SignIn />,
+    withAuth: false,
+  },
+  {
+    id: 3,
+    path: "/todos",
+    element: <Todos />,
     withAuth: false,
   },
 ];

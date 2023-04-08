@@ -59,7 +59,7 @@ const SignIn: React.FC = () => {
           throw new Error(errorResponse.message);
         }
         const responseData = await response.json();
-        localStorage.setItem("accessToken", responseData.access_token);
+        localStorage.setItem("access_token", responseData.access_token);
         alert("로그인에 성공하셨습니다.");
         navigate("/");
       } catch (error) {
