@@ -18,6 +18,7 @@ const TodoItems: React.FC<TodoItemsProps> = ({
   onUpdate,
 }) => {
   const [isUpdate, setIsUpdate] = useState(false);
+  const [todoText, setTodoText] = useState(todoItem.todo);
   const newTodoRef = useRef<HTMLInputElement>(null);
   const deleteTodoHandler = () => {
     onDelete(todoItem.id);
@@ -32,35 +33,41 @@ const TodoItems: React.FC<TodoItemsProps> = ({
   const todoCompleteHandler = () => {
     onUpdate(todoItem.id, todoItem.todo, !todoItem.isCompleted);
   };
+
+  const todoContents = isUpdate ? (
+    <>
+      <input
+        data-testid="modify-input"
+        ref={newTodoRef}
+        defaultValue={todoText}
+      />
+      <button data-testid="submit-button" onClick={updateTodoHandler}>
+        제출
+      </button>
+      <button data-testid="delete-button" onClick={() => setIsUpdate(false)}>
+        취소
+      </button>
+    </>
+  ) : (
+    <>
+      <span>{todoItem.todo}</span>
+      <button data-testid="modify-button" onClick={updateTodoHandler}>
+        수정
+      </button>
+      <button data-testid="delete-button" onClick={deleteTodoHandler}>
+        삭제
+      </button>
+    </>
+  );
   return (
-    <li className={classes.item}>
+    <li className={classes.todo}>
       <label>
         <input
           type="checkbox"
           defaultChecked={todoItem.isCompleted}
           onClick={todoCompleteHandler}
         />
-        {!isUpdate && <span>{todoItem.todo}</span>}
-        {isUpdate && (
-          <input
-            data-testid="modify-input"
-            ref={newTodoRef}
-            onClick={updateTodoHandler}
-          />
-        )}
-        {isUpdate ? (
-          <button data-testid="submit-button" onClick={updateTodoHandler}>
-            제출
-          </button>
-        ) : (
-          <button data-testid="modify-button" onClick={updateTodoHandler}>
-            수정
-          </button>
-        )}
-
-        <button data-testid="delete-button" onClick={deleteTodoHandler}>
-          삭제
-        </button>
+        {todoContents}
       </label>
     </li>
   );
