@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Todos from "./pages/Todos";
+import GeneralLayout from "./layout/GeneralLayout";
+import Header from "./components/Header";
 
 interface RouterElement {
   id: number;
@@ -23,7 +25,7 @@ const routerData: RouterElement[] = [
     id: 1,
     path: "/signup",
     element: <SignUp />,
-    withAuth: false,
+    withAuth: true,
   },
   {
     id: 2,
@@ -35,7 +37,7 @@ const routerData: RouterElement[] = [
     id: 3,
     path: "/todos",
     element: <Todos />,
-    withAuth: false,
+    withAuth: true,
   },
 ];
 
@@ -44,12 +46,22 @@ export const routers: RemixRouter = createBrowserRouter(
     if (router.withAuth) {
       return {
         path: router.path,
-        element: router.element,
+        element: (
+          <>
+            <Header />
+            <GeneralLayout>{router.element}</GeneralLayout>
+          </>
+        ),
       };
     } else {
       return {
         path: router.path,
-        element: router.element,
+        element: (
+          <>
+            <Header />
+            {router.element}
+          </>
+        ),
       };
     }
   })

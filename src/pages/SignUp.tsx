@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./SignUp.module.css";
-interface fetchDataType {
-  email: string;
-  password: string;
-}
+
 const SignUp: React.FC = () => {
   const [email, setEmail] = useState("");
   const [emailTouched, setEmailTouched] = useState(false);
@@ -83,6 +80,7 @@ const SignUp: React.FC = () => {
 
   return (
     <section className={classes.signup_frame}>
+      <h1>SignUp</h1>
       <form onSubmit={inputDataSubmitHandler} className={classes.form}>
         <label htmlFor="email">Email address</label>
         <input

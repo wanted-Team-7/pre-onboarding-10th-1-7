@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import classes from "./NewTodo.module.css";
+
 const NewTodo = (props: any) => {
   const newTodoRef = useRef<HTMLInputElement>(null);
   const todoSubmitHandler = (e: React.FormEvent) => {

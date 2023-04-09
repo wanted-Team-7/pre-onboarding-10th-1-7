@@ -2,6 +2,10 @@
   max-width: 35rem;
   margin: 0rem auto;
 }
+.signin_frame h1 {
+  font-size: 2rem;
+  text-align: center;
+}
 .form {
   display: flex;
   flex-wrap: wrap;
@@ -27,7 +31,7 @@ form label {
 }
 form button {
   padding: 0.5rem;
-  background-color: #d1bd0a;
+  background-color: #2564cf;
   color: #ffff;
   border-radius: 5px;
   border: 1px solid transparent;

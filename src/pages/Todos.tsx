@@ -2,12 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import TodoItems from "../components/TodoItems";
 import classes from "./Todos.module.css";
 import NewTodo from "../components/NewTodo";
-interface TodoItem {
-  id: number;
-  todo: string;
-  isCompleted: boolean;
-  userId: number;
-}
+import { TodoItem } from "../types/todos";
 
 const Todos: React.FC = () => {
   const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
@@ -121,6 +116,7 @@ const Todos: React.FC = () => {
   console.log(todoItems);
   return (
     <section>
+      <h1 className={classes["todos-title"]}> Todos</h1>
       <NewTodo createTodo={createTodo} />
       <article>
         <ul className={classes.todos}>

@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./SignIn.module.css";
-interface fetchDataType {
-  email: string;
-  password: string;
-}
+
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
   const [emailTouched, setEmailTouched] = useState(false);
@@ -81,6 +78,7 @@ const SignIn: React.FC = () => {
 
   return (
     <section className={classes.signin_frame}>
+      <h1>SignIn</h1>
       <form onSubmit={inputDataSubmitHandler} className={classes.form}>
         <label htmlFor="email">Email address</label>
         <input

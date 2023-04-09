@@ -1,0 +1,35 @@
+.headers {
+  width: 100vw;
+  height: 4rem;
+  margin: 0rem 0rem 2rem 0rem;
+  /* padding: 0.5rem 3rem 0.5rem 3rem; */
+  background-color: #2564cf;
+  color: white;
+}
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0rem auto;
+}
+.headers ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  align-content: center;
+  gap: 1rem;
+}
+.headers .logo {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.link {
+  text-decoration: none;
+  color: white;
+
+  cursor: pointer;
+}

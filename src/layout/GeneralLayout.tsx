@@ -2,17 +2,12 @@ import Header from "../components/Header";
 
 interface GeneralLayoutProps {
   children: React.ReactNode;
-  isAdminPage?: boolean;
 }
 
-const GeneralLayout: React.FC<GeneralLayoutProps> = ({
-  children,
-  isAdminPage,
-}) => {
+const GeneralLayout: React.FC<GeneralLayoutProps> = ({ children }) => {
   return (
     <>
-      <Header />
-      {children}
+      <section>{children}</section>
     </>
   );
 };

@@ -1,17 +1,7 @@
 import { useState, useRef } from "react";
 import classes from "./TodoItem.module.css";
-interface TodoItem {
-  id: number;
-  todo: string;
-  isCompleted: boolean;
-  userId: number;
-}
+import { TodoItemsProps } from "../types/todos";
 
-interface TodoItemsProps {
-  todoItem: TodoItem;
-  onDelete: (id: number) => void;
-  onUpdate: (id: number, todoText: string, isCompleted: boolean) => void;
-}
 const TodoItems: React.FC<TodoItemsProps> = ({
   todoItem,
   onDelete,
