@@ -32,7 +32,7 @@ const Todos: React.FC = () => {
   useEffect(() => {
     getTodos();
   }, []);
-  const createTodo = async (todo: TodoItem) => {
+  const createTodo = async (todo: string) => {
     console.log(todo);
     try {
       const response = await fetch(

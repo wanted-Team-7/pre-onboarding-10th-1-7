@@ -11,9 +11,6 @@ export interface TodoItemsProps {
   onUpdate: (id: number, todoText: string, isCompleted: boolean) => void;
 }
 
-export interface TodoItem {
-  id: number;
-  todo: string;
-  isCompleted: boolean;
-  userId: number;
+export interface NewTodoProps {
+  createTodo: (text: string) => void;
 }

@@ -1,13 +1,14 @@
 import { useRef } from "react";
 import classes from "./NewTodo.module.css";
+import { NewTodoProps } from "../types/todos";
 
-const NewTodo = (props: any) => {
+const NewTodo = ({ createTodo }: NewTodoProps) => {
   const newTodoRef = useRef<HTMLInputElement>(null);
   const todoSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     const newTodo = newTodoRef.current!.value;
     if (newTodo.trim() === "") return;
-    props.createTodo(newTodo);
+    createTodo(newTodo);
     newTodoRef.current!.value = "";
   };
 
