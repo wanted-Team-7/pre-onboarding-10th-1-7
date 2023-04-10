@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./SignUp.module.css";
+import { signup } from "../api/auth";
 
 const SignUp: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -40,19 +41,7 @@ const SignUp: React.FC = () => {
 
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://www.pre-onboarding-selection-task.shop/auth/signup",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email,
-              password,
-            }),
-          }
-        );
+        const response = await signup({ email, password });
         if (!response.ok) {
           const errorResponse = await response.json();
           throw new Error(errorResponse.message);

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./SignIn.module.css";
+import { signin } from "../api/auth";
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -38,19 +39,7 @@ const SignIn: React.FC = () => {
     if (!emailValid || !passwordValid) return;
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://www.pre-onboarding-selection-task.shop/auth/signin",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email,
-              password,
-            }),
-          }
-        );
+        const response = await signin({ email, password });
         if (!response.ok) {
           const errorResponse = await response.json();
           throw new Error(errorResponse.message);

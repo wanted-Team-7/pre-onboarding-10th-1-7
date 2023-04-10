@@ -10,7 +10,7 @@ const Header: React.FC = (props) => {
         </Link>
         <ul>
           <Link to="/todos" className={classes.link}>
-            할 일{" "}
+            할 일
           </Link>
           <Link to="/signup" className={classes.link}>
             회원가입
