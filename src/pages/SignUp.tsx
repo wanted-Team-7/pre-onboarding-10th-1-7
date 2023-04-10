@@ -46,8 +46,7 @@ const SignUp: React.FC = () => {
           const errorResponse = await response.json();
           throw new Error(errorResponse.message);
         }
-        // const responseData = await response.json();
-        // console.log("데이터 전송 완료", responseData);
+
         alert("회원 가입을 축하드립니다.");
         navigate("/signin");
       } catch (error) {

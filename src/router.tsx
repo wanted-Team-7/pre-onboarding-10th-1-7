@@ -5,7 +5,6 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Todos from "./pages/Todos";
 import GeneralLayout from "./layout/GeneralLayout";
-import Header from "./components/Header";
 import ErrorPage from "./pages/ErrorPage";
 
 interface RouterElement {
@@ -29,7 +28,7 @@ const routerData: RouterElement[] = [
     path: "/signup",
     element: <SignUp />,
     errorElement: <ErrorPage />,
-    withAuth: true,
+    withAuth: false,
   },
   {
     id: 2,
@@ -40,7 +39,7 @@ const routerData: RouterElement[] = [
   },
   {
     id: 3,
-    path: "/todos",
+    path: "/todo",
     element: <Todos />,
     errorElement: <ErrorPage />,
     withAuth: true,
@@ -49,28 +48,17 @@ const routerData: RouterElement[] = [
 
 export const routers: RemixRouter = createBrowserRouter(
   routerData.map((router) => {
-    if (router.withAuth) {
-      return {
-        path: router.path,
-        element: (
-          <>
-            <Header />
-            <GeneralLayout>{router.element}</GeneralLayout>
-          </>
-        ),
-        errorElement: <ErrorPage />,
-      };
-    } else {
-      return {
-        path: router.path,
-        element: (
-          <>
-            <Header />
+    return {
+      path: router.path,
+      withAuth: router.withAuth,
+      element: (
+        <>
+          <GeneralLayout withAuth={router.withAuth}>
             {router.element}
-          </>
-        ),
-        errorElement: <ErrorPage />,
-      };
-    }
+          </GeneralLayout>
+        </>
+      ),
+      errorElement: <ErrorPage />,
+    };
   })
 );

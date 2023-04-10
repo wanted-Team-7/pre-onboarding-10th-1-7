@@ -3,6 +3,7 @@ import TodoItems from "../components/TodoItems";
 import classes from "./Todos.module.css";
 import NewTodo from "../components/NewTodo";
 import { TodoItem } from "../types/todos";
+import { getToken } from "../utils/token";
 
 const Todos: React.FC = () => {
   const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
@@ -14,7 +15,7 @@ const Todos: React.FC = () => {
         {
           method: "get",
           headers: {
-            authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            authorization: `Bearer ${getToken()}`,
           },
         }
       );
@@ -40,7 +41,7 @@ const Todos: React.FC = () => {
         {
           method: "post",
           headers: {
-            authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            authorization: `Bearer ${getToken()}`,
             "Content-type": "application/json",
           },
           body: JSON.stringify({ todo: todo }),
@@ -67,7 +68,7 @@ const Todos: React.FC = () => {
         {
           method: "put",
           headers: {
-            authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            authorization: `Bearer ${getToken()}`,
             "Content-type": "application/json",
           },
           body: JSON.stringify({
@@ -93,7 +94,7 @@ const Todos: React.FC = () => {
         {
           method: "delete",
           headers: {
-            authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            authorization: `Bearer ${getToken()}`,
           },
         }
       );

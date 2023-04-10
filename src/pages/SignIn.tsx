@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./SignIn.module.css";
 import { signin } from "../api/auth";
+import { setToken } from "../utils/token";
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -45,7 +46,7 @@ const SignIn: React.FC = () => {
           throw new Error(errorResponse.message);
         }
         const responseData = await response.json();
-        localStorage.setItem("access_token", responseData.access_token);
+        setToken(responseData.access_token);
         alert("로그인에 성공하셨습니다.");
         navigate("/");
       } catch (error) {

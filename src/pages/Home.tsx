@@ -9,7 +9,7 @@ const Home: React.FC = () => {
     <PageContent title={title}>
       <ul className={classes.button_frame}>
         <button>
-          <Link to="/todos" className={classes.link}>
+          <Link to="/todo" className={classes.link}>
             할 일
           </Link>
         </button>
