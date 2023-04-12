@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { getToken } from "../utils/token";
 import { useEffect } from "react";
@@ -14,17 +14,18 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({
 }: any) => {
   const isToken = getToken();
   const navigate = useNavigate();
+  const location = useLocation();
+
   useEffect(() => {
     if (withAuth && !isToken) {
       navigate("/signin");
     } else if (
-      !withAuth &&
-      isToken &&
-      (children.type.name === "SignIn" || children.type.name === "SignUp")
+      (location.pathname === "/signin" || location.pathname === "/signup") &&
+      isToken
     ) {
       navigate("/todo");
     }
-  }, [isToken, withAuth, navigate]);
+  }, [isToken, withAuth, children.type.name, navigate]);
 
   return (
     <>
