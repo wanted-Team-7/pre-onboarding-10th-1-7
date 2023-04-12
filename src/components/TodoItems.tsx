@@ -8,8 +8,8 @@ const TodoItems: React.FC<TodoItemsProps> = ({
   onUpdate,
 }) => {
   const [isUpdate, setIsUpdate] = useState(false);
-  const [todoText, setTodoText] = useState(todoItem.todo);
   const newTodoRef = useRef<HTMLInputElement>(null);
+  const todoText = todoItem.todo;
   const deleteTodoHandler = () => {
     onDelete(todoItem.id);
   };
