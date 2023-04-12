@@ -2,7 +2,7 @@
 
 ## 배포된 사이트
 
-<https://https://wanted-preonboarding-daedaem.netlify.app//>
+<https://wanted-preonboarding-daedaem.netlify.app/>
 
 ## 프로젝트 실행 방법
 
