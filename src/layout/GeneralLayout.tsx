@@ -1,8 +1,8 @@
-import { redirect, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { getToken } from "../utils/token";
 import { useEffect } from "react";
-import Todos from "../pages/Todos";
+
 interface GeneralLayoutProps {
   children: React.ReactNode;
   withAuth?: boolean;
@@ -15,15 +15,16 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({
   const isToken = getToken();
   const navigate = useNavigate();
   useEffect(() => {
-    if (!isToken && children.type.name === "Todos") {
+    if (withAuth && !isToken) {
       navigate("/signin");
     } else if (
+      !withAuth &&
       isToken &&
       (children.type.name === "SignIn" || children.type.name === "SignUp")
     ) {
       navigate("/todo");
     }
-  }, [isToken, navigate]);
+  }, [isToken, withAuth, navigate]);
 
   return (
     <>
