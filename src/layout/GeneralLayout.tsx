@@ -14,13 +14,12 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({
 }: any) => {
   const isToken = getToken();
   const navigate = useNavigate();
-  console.log(children.type.name);
   useEffect(() => {
     if (!isToken && children.type.name === "Todos") {
       navigate("/signin");
     } else if (
       isToken &&
-      (children.type.name === "SignIn" || children.type.name === "Signup")
+      (children.type.name === "SignIn" || children.type.name === "SignUp")
     ) {
       navigate("/todo");
     }

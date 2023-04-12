@@ -8,21 +8,15 @@ const Home: React.FC = () => {
   return (
     <PageContent title={title}>
       <ul className={classes.button_frame}>
-        <button>
-          <Link to="/todo" className={classes.link}>
-            할 일
-          </Link>
-        </button>
-        <button>
-          <Link to="/signup" className={classes.link}>
-            회원가입
-          </Link>
-        </button>
-        <button>
-          <Link to="/signin" className={classes.link}>
-            로그인
-          </Link>
-        </button>
+        <Link to="/todo" className={classes.link}>
+          할 일
+        </Link>
+        <Link to="/signup" className={classes.link}>
+          회원가입
+        </Link>
+        <Link to="/signin" className={classes.link}>
+          로그인
+        </Link>
       </ul>
     </PageContent>
   );

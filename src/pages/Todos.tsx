@@ -34,7 +34,6 @@ const Todos: React.FC = () => {
     getTodos();
   }, []);
   const createTodo = async (todo: string) => {
-    console.log(todo);
     try {
       const response = await fetch(
         "https://www.pre-onboarding-selection-task.shop/todos",
@@ -114,7 +113,6 @@ const Todos: React.FC = () => {
   //   createTodo();
   // };
 
-  console.log(todoItems);
   return (
     <section>
       <h1 className={classes["todos-title"]}> Todos</h1>

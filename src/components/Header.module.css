@@ -1,7 +1,7 @@
 .headers {
   height: 4rem;
   margin: 0rem 0rem 2rem 0rem;
-  /* padding: 0.5rem 3rem 0.5rem 3rem; */
+
   background-color: #2564cf;
   color: white;
 }
@@ -10,6 +10,7 @@
   justify-content: space-between;
   align-items: center;
   max-width: 1280px;
+  padding: 0rem 3rem 0rem 3rem;
   margin: 0rem auto;
 }
 .headers ul {

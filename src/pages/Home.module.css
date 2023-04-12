@@ -4,23 +4,18 @@
   text-align: center;
 }
 .button_frame {
-  margin: 2rem auto;
+  margin: 3rem auto;
 }
-.button_frame button {
-  flex-direction: column;
-  text-align: center;
-  margin: 0.5rem;
-  padding: 1rem 1.5rem;
-  background-color: #655f5f2a;
-  min-width: 5rem;
-  box-shadow: 0 0 8px rgba(24, 24, 24, 0.1);
 
-  border-radius: 5px;
-  border: 1px solid transparent;
-  cursor: pointer;
-}
-.link {
+.button_frame .link {
   text-decoration: none;
   color: black;
   font-weight: bold;
+  flex-direction: column;
+  margin: 0.5rem;
+  padding: 1rem 1.5rem;
+  background-color: #655f5f2a;
+  box-shadow: 0 0 8px rgba(24, 24, 24, 0.1);
+  border-radius: 5px;
+  cursor: pointer;
 }
