@@ -48,7 +48,7 @@ const SignIn: React.FC = () => {
         const responseData = await response.json();
         setToken(responseData.access_token);
         alert("로그인에 성공하셨습니다.");
-        return navigate("/todo");
+        navigate("/todo");
       } catch (error) {
         console.error("Error", error);
         alert(error);
