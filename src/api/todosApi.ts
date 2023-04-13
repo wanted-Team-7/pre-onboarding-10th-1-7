@@ -1,11 +1,10 @@
 import { TodoItem } from "../types/todos";
 import { getToken } from "../utils/token";
-
-const baseUrl = "https://www.pre-onboarding-selection-task.shop/todos";
+import { TODO_BASE_URL } from "./const";
 
 export const getTodos = async (): Promise<TodoItem[]> => {
   try {
-    const response = await fetch(baseUrl, {
+    const response = await fetch(TODO_BASE_URL, {
       method: "get",
       headers: {
         authorization: `Bearer ${getToken()}`,
@@ -27,7 +26,7 @@ export const getTodos = async (): Promise<TodoItem[]> => {
 
 export const createTodo = async (todo: string): Promise<void> => {
   try {
-    const response = await fetch(baseUrl, {
+    const response = await fetch(TODO_BASE_URL, {
       method: "post",
       headers: {
         authorization: `Bearer ${getToken()}`,
@@ -51,7 +50,7 @@ export const updateTodo = async (
   isCompleted: boolean
 ): Promise<void> => {
   try {
-    const response = await fetch(`${baseUrl}/${todoId}`, {
+    const response = await fetch(`${TODO_BASE_URL}/${todoId}`, {
       method: "put",
       headers: {
         authorization: `Bearer ${getToken()}`,
@@ -74,7 +73,7 @@ export const updateTodo = async (
 
 export const deleteTodo = async (todoId: number): Promise<void> => {
   try {
-    const response = await fetch(`${baseUrl}/${todoId}`, {
+    const response = await fetch(`${TODO_BASE_URL}/${todoId}`, {
       method: "delete",
       headers: {
         authorization: `Bearer ${getToken()}`,

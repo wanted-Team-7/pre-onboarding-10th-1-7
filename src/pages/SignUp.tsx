@@ -1,43 +1,31 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./SignUp.module.css";
 import { signup } from "../api/authApi";
+import { validateEmail, validatePassword } from "../utils/validator";
+import useInput from "../hooks/useInput";
 
 const SignUp: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [emailTouched, setEmailTouched] = useState(false);
-
-  const [password, setPassword] = useState("");
-  const [passwordTouched, setPasswordTouched] = useState(false);
-
-  const emailValid = email.trim().includes("@") !== false;
-  const emailInputInvalid = !emailValid && emailTouched;
-
-  const passwordValid = password.trim().length >= 8;
-  const passwordInputInvalid = !passwordValid && passwordTouched;
-
   const navigate = useNavigate();
-  const emailChangeHandler = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    setEmail(() => event.target.value);
-  };
-  const passwordChangeHandler = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    setPassword(() => event.target.value);
-  };
-  const emailBlurHandler = () => {
-    setEmailTouched(true);
-  };
-  const passwordBlurHandler = () => {
-    setPasswordTouched(true);
-  };
+  const {
+    inputData: email,
+    inputDataValid: emailValid,
+    inputInvalid: emailInputInvalid,
+    inputChangeHandler: emailChangeHandler,
+    inputDataBlurHandler: emailBlurHandler,
+  } = useInput(validateEmail);
+
+  const {
+    inputData: password,
+    inputDataValid: passwordValid,
+    inputInvalid: passwordInputInvalid,
+    inputChangeHandler: passwordChangeHandler,
+    inputDataBlurHandler: passwordBlurHandler,
+  } = useInput(validatePassword);
+
   const inputDataSubmitHandler = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
-    setEmailTouched(true);
 
     if (!emailValid || !passwordValid) return;
 
