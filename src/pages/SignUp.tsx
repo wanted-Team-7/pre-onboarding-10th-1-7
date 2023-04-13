@@ -33,26 +33,21 @@ const SignUp: React.FC = () => {
   const passwordBlurHandler = () => {
     setPasswordTouched(true);
   };
-  const inputDataSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+  const inputDataSubmitHandler = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault();
     setEmailTouched(true);
 
     if (!emailValid || !passwordValid) return;
 
-    const fetchData = async () => {
-      try {
-        const response = await signup({ email, password });
-        if (!response.ok) {
-          const errorResponse = await response.json();
-          throw new Error(errorResponse.message);
-        }
-        alert("회원 가입을 축하드립니다.");
-        navigate("/signin");
-      } catch (error) {
-        console.error("Error", error);
-      }
-    };
-    fetchData();
+    const { success, error } = await signup({ email, password });
+    if (success) {
+      alert("회원 가입을 축하드립니다.");
+      navigate("/signin");
+    } else {
+      alert(error);
+    }
   };
 
   const signUpBtn = (

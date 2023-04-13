@@ -35,26 +35,19 @@ const SignIn: React.FC = () => {
   const passwordBlurHandler = () => {
     setPasswordTouched(true);
   };
-  const inputDataSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+  const inputDataSubmitHandler = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault();
     if (!emailValid || !passwordValid) return;
-    const fetchData = async () => {
-      try {
-        const response = await signin({ email, password });
-        if (!response.ok) {
-          const errorResponse = await response.json();
-          throw new Error(errorResponse.message);
-        }
-        const responseData = await response.json();
-        setToken(responseData.access_token);
-        alert("로그인에 성공하셨습니다.");
-        navigate("/todo");
-      } catch (error) {
-        console.error("Error", error);
-        alert(error);
-      }
-    };
-    fetchData();
+
+    const { success, error } = await signin({ email, password });
+    if (success) {
+      alert("로그인에 성공하셨습니다.");
+      navigate("/todo");
+    } else {
+      alert(error);
+    }
   };
 
   const signInBtn = (

@@ -16,7 +16,7 @@ const Todos: React.FC = () => {
     fetchTodos();
   }, []);
 
-  const createTodo = async (todo: string) => {
+  const onCreateTodo = async (todo: string) => {
     await createTodo(todo);
     const updatedTodos = await getTodos();
     setTodoItems(() => updatedTodos);
@@ -41,7 +41,7 @@ const Todos: React.FC = () => {
   return (
     <section>
       <h1 className={classes["todos-title"]}> Todos</h1>
-      <NewTodo createTodo={createTodo} />
+      <NewTodo createTodo={onCreateTodo} />
       <article>
         <ul className={classes.todos}>
           {todoItems &&
