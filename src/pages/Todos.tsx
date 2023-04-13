@@ -1,117 +1,42 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import TodoItems from "../components/TodoItems";
 import classes from "./Todos.module.css";
 import NewTodo from "../components/NewTodo";
 import { TodoItem } from "../types/todos";
-import { getToken } from "../utils/token";
+import { getTodos, createTodo, updateTodo, deleteTodo } from "../api/todosApi";
 
 const Todos: React.FC = () => {
   const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
-  const newTodoRef = useRef<HTMLInputElement>(null);
-  const getTodos = async () => {
-    try {
-      const response = await fetch(
-        "https://www.pre-onboarding-selection-task.shop/todos",
-        {
-          method: "get",
-          headers: {
-            authorization: `Bearer ${getToken()}`,
-          },
-        }
-      );
-      if (!response.ok) {
-        const errorResponse = await response.json();
-        throw new Error(errorResponse.message);
-      } else {
-        const fetchedData = await response.json();
-        setTodoItems(() => fetchedData);
-      }
-    } catch (error: any) {
-      console.error(error.message);
-    }
-  };
+
   useEffect(() => {
-    getTodos();
+    const fetchTodos = async () => {
+      const fetchedTodos = await getTodos();
+      setTodoItems(() => fetchedTodos);
+    };
+    fetchTodos();
   }, []);
+
   const createTodo = async (todo: string) => {
-    try {
-      const response = await fetch(
-        "https://www.pre-onboarding-selection-task.shop/todos",
-        {
-          method: "post",
-          headers: {
-            authorization: `Bearer ${getToken()}`,
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({ todo: todo }),
-          // body: JSON.stringify({ todo: newTodoRef.current!.value }),
-        }
-      );
-      if (!response.ok) {
-        const errorResponse = await response.json();
-        throw new Error(errorResponse.message);
-      }
-    } catch (error: any) {
-      console.error(error.message);
-    }
-    getTodos();
+    await createTodo(todo);
+    const updatedTodos = await getTodos();
+    setTodoItems(() => updatedTodos);
   };
-  const updateTodo = async (
+
+  const onUpdateTodo = async (
     todoId: number,
     todoText: string,
     isCompleted: boolean
   ) => {
-    try {
-      const response = await fetch(
-        `https://www.pre-onboarding-selection-task.shop/todos/${todoId}`,
-        {
-          method: "put",
-          headers: {
-            authorization: `Bearer ${getToken()}`,
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({
-            todo: todoText,
-            isCompleted: isCompleted,
-          }),
-        }
-      );
-      if (!response.ok) {
-        const errorResponse = await response.json();
-        throw new Error(errorResponse.message);
-      }
-    } catch (error: any) {
-      console.error(error.message);
-    }
-    getTodos();
+    await updateTodo(todoId, todoText, isCompleted);
+    const updatedTodos = await getTodos();
+    setTodoItems(() => updatedTodos);
   };
 
-  const deleteTodo = async (todoId: number) => {
-    try {
-      const response = await fetch(
-        `https://www.pre-onboarding-selection-task.shop/todos/${todoId}`,
-        {
-          method: "delete",
-          headers: {
-            authorization: `Bearer ${getToken()}`,
-          },
-        }
-      );
-      if (!response.ok) {
-        const errorResponse = await response.json();
-        throw new Error(errorResponse.message);
-      }
-    } catch (error: any) {
-      console.error(error.message);
-    }
-    getTodos();
+  const onDeleteTodo = async (todoId: number) => {
+    await deleteTodo(todoId);
+    const updatedTodos = await getTodos();
+    setTodoItems(updatedTodos);
   };
-  // const todoSubmitHandler = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   const newTodo = newTodoRef.current!.value;
-  //   if (newTodo.trim() === "") return;
-  //   createTodo();
-  // };
 
   return (
     <section>
@@ -124,8 +49,8 @@ const Todos: React.FC = () => {
               <TodoItems
                 key={el.id}
                 todoItem={el}
-                onDelete={deleteTodo}
-                onUpdate={updateTodo}
+                onDelete={onDeleteTodo}
+                onUpdate={onUpdateTodo}
               />
             ))}
         </ul>

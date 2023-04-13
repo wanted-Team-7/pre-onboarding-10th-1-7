@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./SignIn.module.css";
-import { signin } from "../api/auth";
+import { signin } from "../api/authApi";
 import { setToken } from "../utils/token";
 
 const SignIn: React.FC = () => {

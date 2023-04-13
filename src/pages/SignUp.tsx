@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./SignUp.module.css";
-import { signup } from "../api/auth";
+import { signup } from "../api/authApi";
 
 const SignUp: React.FC = () => {
   const [email, setEmail] = useState("");
