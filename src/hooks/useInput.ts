@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { UserInput } from "../types/user";
 
-const useInput = (validator: (inputData: string) => boolean) => {
+const useInput = (validator: (inputData: string) => boolean): UserInput => {
   const [inputData, setInputData] = useState("");
   const [isTouched, setIsTouched] = useState(false);
 
@@ -13,7 +14,7 @@ const useInput = (validator: (inputData: string) => boolean) => {
     setInputData(() => event.target.value);
   };
 
-  const inputDataBlurHandler = () => {
+  const inputDataBlurHandler = (): void => {
     setIsTouched(true);
   };
 
