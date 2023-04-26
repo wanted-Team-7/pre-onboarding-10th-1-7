@@ -1,16 +1,15 @@
 import { useRef } from 'react';
 import classes from './NewTodo.module.css';
 import { NewTodoProps } from '../types/todos';
+import { isInputValid } from '../utils/validator';
 
-// 이지윤
 const NewTodo = ({ createTodo }: NewTodoProps) => {
   const newTodoRef = useRef<HTMLInputElement>(null);
 
-  // trim부분 추출 -> 가독성 좋게 이름 변경
   const todoSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     const newTodo = newTodoRef.current!.value;
-    if (newTodo.trim() === '') return;
+    if (isInputValid(newTodo)) return;
     createTodo(newTodo);
     newTodoRef.current!.value = '';
   };
