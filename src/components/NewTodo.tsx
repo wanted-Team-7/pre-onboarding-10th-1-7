@@ -1,18 +1,15 @@
 import { useRef } from 'react';
 import classes from './NewTodo.module.css';
 import { NewTodoProps } from '../types/todos';
+import { isInputValid } from '../utils/validator';
 
 const NewTodo = ({ createTodo }: NewTodoProps) => {
   const newTodoRef = useRef<HTMLInputElement>(null);
 
-  const isInputValid = (value: string) => {
-    return value.trim() !== '';
-  };
-
   const todoSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     const newTodo = newTodoRef.current!.value;
-    if (!isInputValid(newTodo)) return;
+    if (isInputValid(newTodo)) return;
     createTodo(newTodo);
     newTodoRef.current!.value = '';
   };

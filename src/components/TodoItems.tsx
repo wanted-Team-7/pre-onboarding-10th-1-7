@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import classes from './TodoItem.module.css';
 import { TodoItemsProps } from '../types/todos';
+import { isInputValid } from '../utils/validator';
 
 const TodoItem = ({ todoItem, onDelete, onUpdate }: TodoItemsProps) => {
   const [isUpdate, setIsUpdate] = useState(false);
@@ -8,10 +9,6 @@ const TodoItem = ({ todoItem, onDelete, onUpdate }: TodoItemsProps) => {
   const todoText = todoItem.todo;
   const deleteTodoHandler = () => {
     onDelete(todoItem.id);
-  };
-
-  const isInputValid = (value: string | undefined | null) => {
-    return !value || value.trim().length === 0;
   };
 
   const updateTodoHandler = () => {
