@@ -5,7 +5,7 @@ import NewTodo from "../components/NewTodo";
 import { TodoItem } from "../types/todos";
 import { getTodos, createTodo, updateTodo, deleteTodo } from "../api/todosApi";
 
-const Todos: React.FC = () => {
+const Todos = () => {
   const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
 
   useEffect(() => {

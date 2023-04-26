@@ -4,7 +4,7 @@ import { signup } from "../api/authApi";
 import { validateEmail, validatePassword } from "../utils/validator";
 import useInput from "../hooks/useInput";
 
-const SignUp: React.FC = () => {
+const SignUp = () => {
   const navigate = useNavigate();
   const {
     inputData: email,

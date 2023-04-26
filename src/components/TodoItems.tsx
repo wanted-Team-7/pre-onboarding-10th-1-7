@@ -2,11 +2,7 @@ import { useState, useRef } from "react";
 import classes from "./TodoItem.module.css";
 import { TodoItemsProps } from "../types/todos";
 
-const TodoItems: React.FC<TodoItemsProps> = ({
-  todoItem,
-  onDelete,
-  onUpdate,
-}) => {
+const TodoItems = ({ todoItem, onDelete, onUpdate }: TodoItemsProps) => {
   const [isUpdate, setIsUpdate] = useState(false);
   const newTodoRef = useRef<HTMLInputElement>(null);
   const todoText = todoItem.todo;

@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { getToken } from "../utils/token";
 import { useEffect } from "react";
-
+import { authRoutes } from "../router";
 interface GeneralLayoutProps {
   children: React.ReactNode;
   withAuth?: boolean;
@@ -11,7 +11,7 @@ interface GeneralLayoutProps {
 const GeneralLayout: React.FC<GeneralLayoutProps> = ({
   withAuth,
   children,
-}: any) => {
+}: GeneralLayoutProps) => {
   const isToken = getToken();
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,13 +19,10 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({
   useEffect(() => {
     if (withAuth && !isToken) {
       navigate("/signin");
-    } else if (
-      (location.pathname === "/signin" || location.pathname === "/signup") &&
-      isToken
-    ) {
+    } else if (isToken && authRoutes.includes(location.pathname)) {
       navigate("/todo");
     }
-  }, [isToken, withAuth, children.type.name, navigate]);
+  }, [isToken, location.pathname, withAuth, navigate]);
 
   return (
     <>

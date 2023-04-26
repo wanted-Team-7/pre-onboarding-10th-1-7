@@ -2,7 +2,7 @@ import classes from "./Header.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { getToken, removeToken } from "../utils/token";
 
-const Header: React.FC = (props) => {
+const Header = () => {
   const isToken = getToken();
   const navigate = useNavigate();
 

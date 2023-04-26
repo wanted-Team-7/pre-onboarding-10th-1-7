@@ -2,7 +2,7 @@ import PageContent from "../components/PageContent";
 import classes from "./Home.module.css";
 import { Link } from "react-router-dom";
 
-const Home: React.FC = () => {
+const Home = () => {
   let title = "원티드 프리온보딩 프론트엔드 인턴십";
 
   return (
