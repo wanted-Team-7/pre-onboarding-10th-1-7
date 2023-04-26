@@ -5,35 +5,31 @@ import NewTodo from '../components/NewTodo';
 import { TodoItem } from '../types/todos';
 import { getTodos, createTodo, updateTodo, deleteTodo } from '../api/todosApi';
 
-// 권민영님
 const Todos = () => {
   const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
 
-  // 1.
   useEffect(() => {
-    const fetchTodos = async () => {
-      const fetchedTodos = await getTodos();
-      setTodoItems(() => fetchedTodos);
-    };
-    fetchTodos();
+    onReadTodo();
   }, []);
-  // 1.
+
+  const onReadTodo = async () => {
+    const fetchedTodos = await getTodos();
+    setTodoItems(fetchedTodos);
+  };
+
   const onCreateTodo = async (todo: string) => {
     await createTodo(todo);
-    const updatedTodos = await getTodos();
-    setTodoItems(() => updatedTodos);
+    onReadTodo();
   };
-  // 1.
+
   const onUpdateTodo = async (todoId: number, todoText: string, isCompleted: boolean) => {
     await updateTodo(todoId, todoText, isCompleted);
-    const updatedTodos = await getTodos();
-    setTodoItems(() => updatedTodos);
+    onReadTodo();
   };
-  // 1.
+
   const onDeleteTodo = async (todoId: number) => {
     await deleteTodo(todoId);
-    const updatedTodos = await getTodos();
-    setTodoItems(updatedTodos);
+    onReadTodo();
   };
 
   return (
