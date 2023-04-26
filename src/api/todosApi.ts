@@ -1,9 +1,9 @@
-import { TodoItem } from '../types/todos';
+import { TodoItemState } from '../types/todos';
 import { getToken } from '../utils/token';
 import { TODO_BASE_URL } from './const';
 
 // fetchClient 따로 빼기
-export const getTodos = async (): Promise<TodoItem[]> => {
+export const getTodos = async (): Promise<TodoItemState[]> => {
   try {
     const response = await fetch(TODO_BASE_URL, {
       method: 'get',

@@ -1,4 +1,4 @@
-export interface TodoItem {
+export interface TodoItemState {
   id: number;
   todo: string;
   isCompleted: boolean;
@@ -6,7 +6,7 @@ export interface TodoItem {
 }
 
 export interface TodoItemsProps {
-  todoItem: TodoItem;
+  todoItem: TodoItemState;
   onDelete: (id: number) => void;
   onUpdate: (id: number, todoText: string, isCompleted: boolean) => void;
 }
