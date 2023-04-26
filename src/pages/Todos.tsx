@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import TodoItems from "../components/TodoItems";
-import classes from "./Todos.module.css";
-import NewTodo from "../components/NewTodo";
-import { TodoItem } from "../types/todos";
-import { getTodos, createTodo, updateTodo, deleteTodo } from "../api/todosApi";
+import { useState, useEffect } from 'react';
+import TodoItems from '../components/TodoItems';
+import classes from './Todos.module.css';
+import NewTodo from '../components/NewTodo';
+import { TodoItem } from '../types/todos';
+import { getTodos, createTodo, updateTodo, deleteTodo } from '../api/todosApi';
 
 const Todos = () => {
   const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
@@ -22,11 +22,7 @@ const Todos = () => {
     setTodoItems(() => updatedTodos);
   };
 
-  const onUpdateTodo = async (
-    todoId: number,
-    todoText: string,
-    isCompleted: boolean
-  ) => {
+  const onUpdateTodo = async (todoId: number, todoText: string, isCompleted: boolean) => {
     await updateTodo(todoId, todoText, isCompleted);
     const updatedTodos = await getTodos();
     setTodoItems(() => updatedTodos);
@@ -40,7 +36,7 @@ const Todos = () => {
 
   return (
     <section>
-      <h1 className={classes["todos-title"]}> Todos</h1>
+      <h1 className={classes['todos-title']}> Todos</h1>
       <NewTodo createTodo={onCreateTodo} />
       <article>
         <ul className={classes.todos}>

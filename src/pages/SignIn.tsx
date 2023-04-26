@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import classes from "./SignIn.module.css";
-import { signin } from "../api/authApi";
-import { validateEmail, validatePassword } from "../utils/validator";
-import useInput from "./../hooks/useInput";
+import { useNavigate } from 'react-router-dom';
+import classes from './SignIn.module.css';
+import { signin } from '../api/authApi';
+import { validateEmail, validatePassword } from '../utils/validator';
+import useInput from '../hooks/useInput';
 
 const SignIn: React.FC = () => {
   const navigate = useNavigate();
@@ -22,16 +22,14 @@ const SignIn: React.FC = () => {
     inputDataBlurHandler: passwordBlurHandler,
   } = useInput(validatePassword);
 
-  const inputDataSubmitHandler = async (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
+  const inputDataSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!emailValid || !passwordValid) return;
 
     const { success, error } = await signin({ email, password });
     if (success) {
-      alert("로그인에 성공하셨습니다.");
-      navigate("/todo");
+      alert('로그인에 성공하셨습니다.');
+      navigate('/todo');
     } else {
       alert(error);
     }
@@ -39,7 +37,8 @@ const SignIn: React.FC = () => {
 
   const signInBtn = (
     <button
-      data-testid="signin-button"
+      type='button'
+      data-testid='signin-button'
       className={classes.btn}
       disabled={!emailValid || !passwordValid}
     >
@@ -51,33 +50,31 @@ const SignIn: React.FC = () => {
     <section className={classes.signin_frame}>
       <h1>SignIn</h1>
       <form onSubmit={inputDataSubmitHandler} className={classes.form}>
-        <label htmlFor="email">Email address</label>
+        <label htmlFor='email'>Email address</label>
         <input
-          type="text"
-          id="email"
+          type='text'
+          id='email'
           value={email}
-          data-testid="email-input"
+          data-testid='email-input'
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
         />
         {emailInputInvalid && (
           <div className={classes.errors}>
-            "공백없이 @를 포함한 올바른 이메일 주소를 입력해주세요."
+            공백없이 @를 포함한 올바른 이메일 주소를 입력해주세요.
           </div>
         )}
-        <label htmlFor="password">Password</label>
+        <label htmlFor='password'>Password</label>
         <input
-          type="text"
-          id="password"
+          type='text'
+          id='password'
           value={password}
-          data-testid="password-input"
+          data-testid='password-input'
           onChange={passwordChangeHandler}
           onBlur={passwordBlurHandler}
         />
         {passwordInputInvalid && (
-          <div className={classes.errors}>
-            "공백없이 8글자 이상의 비밀번호를 입력해주세요."
-          </div>
+          <div className={classes.errors}>공백없이 8글자 이상의 비밀번호를 입력해주세요.</div>
         )}
         {signInBtn}
       </form>

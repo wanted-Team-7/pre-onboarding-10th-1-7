@@ -1,6 +1,6 @@
-import classes from "./Header.module.css";
-import { Link, useNavigate } from "react-router-dom";
-import { getToken, removeToken } from "../utils/token";
+import classes from './Header.module.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { getToken, removeToken } from '../utils/token';
 
 const Header = () => {
   const isToken = getToken();
@@ -8,12 +8,12 @@ const Header = () => {
 
   const logoutHandler = () => {
     removeToken();
-    alert("로그아웃 되었습니다.");
-    navigate("/");
+    alert('로그아웃 되었습니다.');
+    navigate('/');
   };
   const headerContent = isToken ? (
     <ul>
-      <Link to="/todo" className={classes.link}>
+      <Link to='/todo' className={classes.link}>
         할 일
       </Link>
       <div className={classes.link} onClick={logoutHandler}>
@@ -22,13 +22,13 @@ const Header = () => {
     </ul>
   ) : (
     <ul>
-      <Link to="/todo" className={classes.link}>
+      <Link to='/todo' className={classes.link}>
         할 일
       </Link>
-      <Link to="/signup" className={classes.link}>
+      <Link to='/signup' className={classes.link}>
         회원가입
       </Link>
-      <Link to="/signin" className={classes.link}>
+      <Link to='/signin' className={classes.link}>
         로그인
       </Link>
     </ul>
@@ -36,8 +36,8 @@ const Header = () => {
 
   return (
     <header className={classes.headers}>
-      <div className={classes["header-content"]}>
-        <Link to="/" className={classes.logo}>
+      <div className={classes['header-content']}>
+        <Link to='/' className={classes.logo}>
           Todos
         </Link>
         {headerContent}

@@ -1,13 +1,13 @@
-import { AUTH_BASE_URL } from "./const";
-import { UserInfo } from "../types/user";
-import { setToken } from "../utils/token";
+import { AUTH_BASE_URL } from './const';
+import { UserInfo } from '../types/user';
+import { setToken } from '../utils/token';
 
 export const signin = async (signinData: UserInfo) => {
   try {
     const response = await fetch(`${AUTH_BASE_URL}/signin`, {
-      method: "post",
+      method: 'post',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(signinData),
     });
@@ -19,7 +19,7 @@ export const signin = async (signinData: UserInfo) => {
     setToken(responseData.access_token);
     return { success: true };
   } catch (error) {
-    console.error("Error", error);
+    console.error('Error', error);
     return { success: false, error };
   }
 };
@@ -27,9 +27,9 @@ export const signin = async (signinData: UserInfo) => {
 export const signup = async (signupData: UserInfo) => {
   try {
     const response = await fetch(`${AUTH_BASE_URL}/signup`, {
-      method: "post",
+      method: 'post',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(signupData),
     });
@@ -39,7 +39,7 @@ export const signup = async (signupData: UserInfo) => {
     }
     return { success: true };
   } catch (error) {
-    console.error("Error", error);
+    console.error('Error', error);
     return { success: false, error };
   }
 };

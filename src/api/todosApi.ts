@@ -1,11 +1,11 @@
-import { TodoItem } from "../types/todos";
-import { getToken } from "../utils/token";
-import { TODO_BASE_URL } from "./const";
+import { TodoItem } from '../types/todos';
+import { getToken } from '../utils/token';
+import { TODO_BASE_URL } from './const';
 
 export const getTodos = async (): Promise<TodoItem[]> => {
   try {
     const response = await fetch(TODO_BASE_URL, {
-      method: "get",
+      method: 'get',
       headers: {
         authorization: `Bearer ${getToken()}`,
       },
@@ -27,12 +27,12 @@ export const getTodos = async (): Promise<TodoItem[]> => {
 export const createTodo = async (todo: string): Promise<void> => {
   try {
     const response = await fetch(TODO_BASE_URL, {
-      method: "post",
+      method: 'post',
       headers: {
         authorization: `Bearer ${getToken()}`,
-        "Content-type": "application/json",
+        'Content-type': 'application/json',
       },
-      body: JSON.stringify({ todo: todo }),
+      body: JSON.stringify({ todo }),
     });
 
     if (!response.ok) {
@@ -51,14 +51,14 @@ export const updateTodo = async (
 ): Promise<void> => {
   try {
     const response = await fetch(`${TODO_BASE_URL}/${todoId}`, {
-      method: "put",
+      method: 'put',
       headers: {
         authorization: `Bearer ${getToken()}`,
-        "Content-type": "application/json",
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({
         todo: todoText,
-        isCompleted: isCompleted,
+        isCompleted,
       }),
     });
 
@@ -74,7 +74,7 @@ export const updateTodo = async (
 export const deleteTodo = async (todoId: number): Promise<void> => {
   try {
     const response = await fetch(`${TODO_BASE_URL}/${todoId}`, {
-      method: "delete",
+      method: 'delete',
       headers: {
         authorization: `Bearer ${getToken()}`,
       },

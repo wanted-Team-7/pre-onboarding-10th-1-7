@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
-import classes from "./TodoItem.module.css";
-import { TodoItemsProps } from "../types/todos";
+import { useState, useRef } from 'react';
+import classes from './TodoItem.module.css';
+import { TodoItemsProps } from '../types/todos';
 
 const TodoItems = ({ todoItem, onDelete, onUpdate }: TodoItemsProps) => {
   const [isUpdate, setIsUpdate] = useState(false);
@@ -22,25 +22,21 @@ const TodoItems = ({ todoItem, onDelete, onUpdate }: TodoItemsProps) => {
 
   const todoContents = isUpdate ? (
     <>
-      <input
-        data-testid="modify-input"
-        ref={newTodoRef}
-        defaultValue={todoText}
-      />
-      <button data-testid="submit-button" onClick={updateTodoHandler}>
+      <input data-testid='modify-input' ref={newTodoRef} defaultValue={todoText} />
+      <button type='button' data-testid='submit-button' onClick={updateTodoHandler}>
         제출
       </button>
-      <button data-testid="delete-button" onClick={() => setIsUpdate(false)}>
+      <button type='button' data-testid='delete-button' onClick={() => setIsUpdate(false)}>
         취소
       </button>
     </>
   ) : (
     <>
       <span>{todoItem.todo}</span>
-      <button data-testid="modify-button" onClick={updateTodoHandler}>
+      <button type='button' data-testid='modify-button' onClick={updateTodoHandler}>
         수정
       </button>
-      <button data-testid="delete-button" onClick={deleteTodoHandler}>
+      <button type='button' data-testid='delete-button' onClick={deleteTodoHandler}>
         삭제
       </button>
     </>
@@ -49,7 +45,7 @@ const TodoItems = ({ todoItem, onDelete, onUpdate }: TodoItemsProps) => {
     <li className={classes.todo}>
       <label>
         <input
-          type="checkbox"
+          type='checkbox'
           defaultChecked={todoItem.isCompleted}
           onClick={todoCompleteHandler}
         />

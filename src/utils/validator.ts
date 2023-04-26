@@ -1,5 +1,5 @@
 export const validateEmail = (email: string) => {
-  return email.trim().includes("@");
+  return email.trim().includes('@');
 };
 
 export const validatePassword = (password: string) => {
