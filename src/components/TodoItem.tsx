@@ -1,9 +1,9 @@
 import { useState, useRef } from 'react';
 import classes from './TodoItem.module.css';
-import { TodoItemsProps } from '../types/todos';
 import { isInputValid } from '../utils/validator';
+import { TodoItemProps } from '../types/todos';
 
-const TodoItem = ({ todoItem, onDelete, onUpdate }: TodoItemsProps) => {
+const TodoItem = ({ todoItem, onDelete, onUpdate }: TodoItemProps) => {
   const [isUpdate, setIsUpdate] = useState(false);
   const newTodoRef = useRef<HTMLInputElement>(null);
   const todoText = todoItem.todo;

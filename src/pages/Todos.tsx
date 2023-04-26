@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import TodoItem from '../components/TodoItems';
+import TodoItem from '../components/TodoItem';
 import classes from './Todos.module.css';
 import NewTodo from '../components/NewTodo';
 import { TodoItemState } from '../types/todos';

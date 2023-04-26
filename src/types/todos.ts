@@ -5,7 +5,7 @@ export interface TodoItemState {
   userId: number;
 }
 
-export interface TodoItemsProps {
+export interface TodoItemProps {
   todoItem: TodoItemState;
   onDelete: (id: number) => void;
   onUpdate: (id: number, todoText: string, isCompleted: boolean) => void;
