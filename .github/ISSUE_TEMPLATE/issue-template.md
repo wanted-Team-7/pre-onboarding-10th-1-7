@@ -1,6 +1,6 @@
 ---
-name: Sassy Issue Template
-about: Sassy Issue Template
+name: Issue Template
+about: Issue Template
 title: "ex)[feat]로그인 페이지 버튼을 만들겠습니다."
 labels: ''
 assignees: ''
