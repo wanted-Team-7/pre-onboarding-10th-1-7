@@ -3,6 +3,7 @@ import classes from './SignIn.module.css';
 import { signin } from '../api/authApi';
 import { validateEmail, validatePassword } from '../utils/validator';
 import useAuthInput from '../hooks/useInput';
+import { PATH_URL } from '../constants';
 
 const SignIn: React.FC = () => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const SignIn: React.FC = () => {
     const { success, error } = await signin({ email, password });
     if (success) {
       alert('로그인에 성공하셨습니다.');
-      navigate('/todo');
+      navigate(PATH_URL.TODO);
     } else {
       alert(error);
     }
@@ -64,7 +65,7 @@ const SignIn: React.FC = () => {
         {emailInputInvalid && <div className={classes.errors}>{emailErrorMessage}</div>}
         <label htmlFor='password'>Password</label>
         <input
-          type='text'
+          type='password'
           id='password'
           value={password}
           data-testid='password-input'

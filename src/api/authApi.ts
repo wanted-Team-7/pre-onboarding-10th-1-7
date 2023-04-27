@@ -1,11 +1,11 @@
-import { AUTH_BASE_URL } from './const';
 import { UserInfo } from '../types/user';
 import { setToken } from '../utils/token';
+import { BASE_URL, PATH_URL } from '../constants';
 import { fetchClient } from './fetchClient';
 
 export const signin = async (signinData: UserInfo) => {
   try {
-    const response = await fetchClient(`${AUTH_BASE_URL}/signin`, {
+    const response = await fetchClient(`${BASE_URL}${PATH_URL.AUTH}${PATH_URL.SIGNIN}`, {
       method: 'post',
       body: JSON.stringify(signinData),
     });
@@ -24,7 +24,7 @@ export const signin = async (signinData: UserInfo) => {
 
 export const signup = async (signupData: UserInfo) => {
   try {
-    const response = await fetchClient(`${AUTH_BASE_URL}/signup`, {
+    const response = await fetchClient(`${BASE_URL}${PATH_URL.AUTH}${PATH_URL.SIGNIN}`, {
       method: 'post',
       body: JSON.stringify(signupData),
     });
