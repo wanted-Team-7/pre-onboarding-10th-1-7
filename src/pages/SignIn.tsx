@@ -39,7 +39,7 @@ const SignIn: React.FC = () => {
 
   const signInBtn = (
     <button
-      type='button'
+      type='submit'
       data-testid='signin-button'
       className={classes.btn}
       disabled={!emailValid || !passwordValid}
