@@ -65,7 +65,7 @@ const SignIn: React.FC = () => {
         {emailInputInvalid && <div className={classes.errors}>{emailErrorMessage}</div>}
         <label htmlFor='password'>Password</label>
         <input
-          type='text'
+          type='password'
           id='password'
           value={password}
           data-testid='password-input'
