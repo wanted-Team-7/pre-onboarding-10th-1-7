@@ -4,7 +4,7 @@ import { BASE_URL, PATH_URL } from '../constants';
 
 export const signin = async (signinData: UserInfo) => {
   try {
-    const response = await fetch(`${BASE_URL}${PATH_URL.SIGNIN}`, {
+    const response = await fetch(`${BASE_URL}${PATH_URL.AUTH}${PATH_URL.SIGNIN}`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export const signin = async (signinData: UserInfo) => {
 
 export const signup = async (signupData: UserInfo) => {
   try {
-    const response = await fetch(`${BASE_URL}${PATH_URL.SIGNUP}`, {
+    const response = await fetch(`${BASE_URL}${PATH_URL.AUTH}${PATH_URL.SIGNIN}`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',

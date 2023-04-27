@@ -35,7 +35,7 @@ const routerData: RouterElement[] = [
   },
   {
     id: 3,
-    path: PATH_URL.TODOS,
+    path: PATH_URL.TODO,
     element: <Todos />,
     withAuth: true,
   },
