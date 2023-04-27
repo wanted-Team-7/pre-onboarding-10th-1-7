@@ -40,7 +40,7 @@ const SignUp = () => {
 
   const signUpBtn = (
     <button
-      type='button'
+      type='submit'
       data-testid='signup-button'
       className={classes.btn}
       disabled={!emailValid || !passwordValid}
