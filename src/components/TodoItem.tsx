@@ -11,11 +11,11 @@ const TodoItem = ({ todoItem, onDelete, onUpdate }: TodoItemProps) => {
     onDelete(todoItem.id);
   };
 
-  const updateTodoHandler = () => {
-    setIsUpdate(() => true);
+  const updateTodoHandler = async () => {
+    // setIsUpdate(() => true);
     const newTodo = newTodoRef.current?.value;
     if (isInputValid(newTodo)) return;
-    onUpdate(todoItem.id, newTodo, todoItem.isCompleted);
+    await onUpdate(todoItem.id, newTodo, todoItem.isCompleted);
     setIsUpdate(() => false);
   };
 

@@ -24,7 +24,7 @@ const Todos = () => {
 
   const onUpdateTodo = async (todoId: number, todoText: string, isCompleted: boolean) => {
     await updateTodo(todoId, todoText, isCompleted);
-    onReadTodo();
+    await onReadTodo();
   };
 
   const onDeleteTodo = async (todoId: number) => {
