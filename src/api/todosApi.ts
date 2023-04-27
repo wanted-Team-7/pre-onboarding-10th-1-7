@@ -1,7 +1,6 @@
 import { BASE_URL, PATH_URL } from '../constants';
 import { TodoItemState } from '../types/todos';
 import { getToken } from '../utils/token';
-import { TODO_BASE_URL } from './const';
 import { fetchClient } from './fetchClient';
 
 export const getTodos = async (): Promise<TodoItemState[]> => {

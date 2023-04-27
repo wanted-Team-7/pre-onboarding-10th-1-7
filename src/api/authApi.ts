@@ -1,4 +1,3 @@
-import { AUTH_BASE_URL } from './const';
 import { UserInfo } from '../types/user';
 import { setToken } from '../utils/token';
 import { BASE_URL, PATH_URL } from '../constants';
