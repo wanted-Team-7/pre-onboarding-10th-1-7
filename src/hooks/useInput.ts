@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { UserInput } from '../types/user';
 
-const useInput = (validator: (inputData: string) => [boolean, string | null]): UserInput => {
+const useAuthInput = (validator: (inputData: string) => [boolean, string | null]): UserInput => {
   const [inputData, setInputData] = useState('');
   const [isTouched, setIsTouched] = useState(false);
 
@@ -25,4 +25,4 @@ const useInput = (validator: (inputData: string) => [boolean, string | null]): U
     errorMessage,
   };
 };
-export default useInput;
+export default useAuthInput;
