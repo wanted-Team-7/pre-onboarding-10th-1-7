@@ -1,15 +1,12 @@
 import { TodoItemState } from '../types/todos';
 import { getToken } from '../utils/token';
 import { TODO_BASE_URL } from './const';
+import { fetchClient } from './fetchClient';
 
-// fetchClient 따로 빼기
 export const getTodos = async (): Promise<TodoItemState[]> => {
   try {
-    const response = await fetch(TODO_BASE_URL, {
+    const response = await fetchClient(TODO_BASE_URL, {
       method: 'get',
-      headers: {
-        authorization: `Bearer ${getToken()}`,
-      },
     });
 
     if (!response.ok) {
@@ -27,12 +24,8 @@ export const getTodos = async (): Promise<TodoItemState[]> => {
 
 export const createTodo = async (todo: string): Promise<void> => {
   try {
-    const response = await fetch(TODO_BASE_URL, {
+    const response = await fetchClient(TODO_BASE_URL, {
       method: 'post',
-      headers: {
-        authorization: `Bearer ${getToken()}`,
-        'Content-type': 'application/json',
-      },
       body: JSON.stringify({ todo }),
     });
 
@@ -51,12 +44,8 @@ export const updateTodo = async (
   isCompleted: boolean
 ): Promise<void> => {
   try {
-    const response = await fetch(`${TODO_BASE_URL}/${todoId}`, {
+    const response = await fetchClient(`${TODO_BASE_URL}/${todoId}`, {
       method: 'put',
-      headers: {
-        authorization: `Bearer ${getToken()}`,
-        'Content-type': 'application/json',
-      },
       body: JSON.stringify({
         todo: todoText,
         isCompleted,
@@ -74,11 +63,8 @@ export const updateTodo = async (
 
 export const deleteTodo = async (todoId: number): Promise<void> => {
   try {
-    const response = await fetch(`${TODO_BASE_URL}/${todoId}`, {
+    const response = await fetchClient(`${TODO_BASE_URL}/${todoId}`, {
       method: 'delete',
-      headers: {
-        authorization: `Bearer ${getToken()}`,
-      },
     });
 
     if (!response.ok) {
