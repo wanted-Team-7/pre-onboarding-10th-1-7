@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { UserInput } from '../types/user';
 
-const useInput = (validator: (inputData: string) => boolean): UserInput => {
+const useAuthInput = (validator: (inputData: string) => [boolean, string | null]): UserInput => {
   const [inputData, setInputData] = useState('');
   const [isTouched, setIsTouched] = useState(false);
 
-  const inputDataValid = validator(inputData);
+  const [inputDataValid, errorMessage] = validator(inputData);
   const inputInvalid = !inputDataValid && isTouched;
 
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -22,6 +22,7 @@ const useInput = (validator: (inputData: string) => boolean): UserInput => {
     inputInvalid,
     inputChangeHandler,
     inputDataBlurHandler,
+    errorMessage,
   };
 };
-export default useInput;
+export default useAuthInput;

@@ -9,4 +9,5 @@ export interface UserInput {
   inputInvalid: boolean;
   inputChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
   inputDataBlurHandler: () => void;
+  errorMessage: string | null;
 }

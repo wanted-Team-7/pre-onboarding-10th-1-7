@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import classes from './SignUp.module.css';
 import { signup } from '../api/authApi';
 import { validateEmail, validatePassword } from '../utils/validator';
-import useInput from '../hooks/useInput';
+import useAuthInput from '../hooks/useInput';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -12,7 +12,8 @@ const SignUp = () => {
     inputInvalid: emailInputInvalid,
     inputChangeHandler: emailChangeHandler,
     inputDataBlurHandler: emailBlurHandler,
-  } = useInput(validateEmail);
+    errorMessage: emailErrorMessage,
+  } = useAuthInput(validateEmail);
 
   const {
     inputData: password,
@@ -20,7 +21,8 @@ const SignUp = () => {
     inputInvalid: passwordInputInvalid,
     inputChangeHandler: passwordChangeHandler,
     inputDataBlurHandler: passwordBlurHandler,
-  } = useInput(validatePassword);
+    errorMessage: passwordErrorMessage,
+  } = useAuthInput(validatePassword);
 
   const inputDataSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -60,11 +62,7 @@ const SignUp = () => {
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
         />
-        {emailInputInvalid && (
-          <div className={classes.errors}>
-            공백없이 @를 포함한 올바른 이메일 주소를 입력해주세요.
-          </div>
-        )}
+        {emailInputInvalid && <div className={classes.errors}>{emailErrorMessage}</div>}
         <label htmlFor='password'>Password</label>
         <input
           type='text'
@@ -74,9 +72,7 @@ const SignUp = () => {
           onChange={passwordChangeHandler}
           onBlur={passwordBlurHandler}
         />
-        {passwordInputInvalid && (
-          <div className={classes.errors}>공백없이 8글자 이상의 비밀번호를 입력해주세요.</div>
-        )}
+        {passwordInputInvalid && <div className={classes.errors}>{passwordErrorMessage}</div>}
         {signUpBtn}
       </form>
     </section>
