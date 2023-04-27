@@ -3,6 +3,7 @@ import classes from './SignUp.module.css';
 import { signup } from '../api/authApi';
 import { validateEmail, validatePassword } from '../utils/validator';
 import useAuthInput from '../hooks/useInput';
+import { PATH_URL } from '../constants';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const SignUp = () => {
     const { success, error } = await signup({ email, password });
     if (success) {
       alert('회원 가입을 축하드립니다.');
-      navigate('/signin');
+      navigate(PATH_URL.SIGNIN);
     } else {
       alert(error);
     }

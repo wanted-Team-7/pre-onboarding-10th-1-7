@@ -1,7 +1,4 @@
-const ERROR_MESSAGE = {
-  EMAIL: '공백없이 @를 포함한 올바른 이메일 주소를 입력해주세요.',
-  PASSWORD: '공백없이 8글자 이상의 비밀번호를 입력해주세요.',
-};
+import { ERROR_MESSAGE } from '../constants';
 
 export const validateEmail = (email: string): [boolean, string | null] => {
   const isValid = email.trim().includes('@');

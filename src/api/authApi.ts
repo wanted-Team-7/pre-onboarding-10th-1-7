@@ -1,10 +1,11 @@
 import { AUTH_BASE_URL } from './const';
 import { UserInfo } from '../types/user';
 import { setToken } from '../utils/token';
+import { BASE_URL, PATH_URL } from '../constants';
 
 export const signin = async (signinData: UserInfo) => {
   try {
-    const response = await fetch(`${AUTH_BASE_URL}/signin`, {
+    const response = await fetch(`${BASE_URL}${PATH_URL.SIGNIN}`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -26,7 +27,7 @@ export const signin = async (signinData: UserInfo) => {
 
 export const signup = async (signupData: UserInfo) => {
   try {
-    const response = await fetch(`${AUTH_BASE_URL}/signup`, {
+    const response = await fetch(`${BASE_URL}${PATH_URL.SIGNUP}`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',

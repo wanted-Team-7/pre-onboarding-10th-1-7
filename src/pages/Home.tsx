@@ -1,4 +1,5 @@
 import PageContent from '../components/PageContent';
+import { PATH_URL } from '../constants';
 import classes from './Home.module.css';
 import { Link } from 'react-router-dom';
 
@@ -8,13 +9,13 @@ const Home = () => {
   return (
     <PageContent title={title}>
       <ul className={classes.button_frame}>
-        <Link to='/todo' className={classes.link}>
+        <Link to={PATH_URL.TODO} className={classes.link}>
           할 일
         </Link>
-        <Link to='/signup' className={classes.link}>
+        <Link to={PATH_URL.SIGNUP} className={classes.link}>
           회원가입
         </Link>
-        <Link to='/signin' className={classes.link}>
+        <Link to={PATH_URL.SIGNIN} className={classes.link}>
           로그인
         </Link>
       </ul>

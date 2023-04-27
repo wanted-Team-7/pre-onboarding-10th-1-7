@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import { getToken } from '../utils/token';
 import { useEffect } from 'react';
 import { authRoutes } from '../router';
+import { PATH_URL } from '../constants';
 
 interface GeneralLayoutProps {
   children: React.ReactNode;
@@ -19,9 +20,9 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({
 
   useEffect(() => {
     if (withAuth && !isToken) {
-      navigate('/signin');
+      navigate(PATH_URL.SIGNIN);
     } else if (isToken && authRoutes.includes(location.pathname)) {
-      navigate('/todo');
+      navigate(PATH_URL.TODO);
     }
   }, [isToken, location.pathname, withAuth, navigate]);
 
