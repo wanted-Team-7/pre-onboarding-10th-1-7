@@ -5,3 +5,7 @@ export const validateEmail = (email: string) => {
 export const validatePassword = (password: string) => {
   return password.trim().length >= 8;
 };
+
+export const isInputValid = (value: string | undefined | null) => {
+  return !value || value.trim().length === 0;
+};

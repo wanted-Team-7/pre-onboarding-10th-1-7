@@ -1,8 +1,9 @@
-import { TodoItem } from '../types/todos';
+import { TodoItemState } from '../types/todos';
+import { getToken } from '../utils/token';
 import { TODO_BASE_URL } from './const';
 import { fetchClient } from './fetchClient';
 
-export const getTodos = async (): Promise<TodoItem[]> => {
+export const getTodos = async (): Promise<TodoItemState[]> => {
   try {
     const response = await fetchClient(TODO_BASE_URL, {
       method: 'get',
