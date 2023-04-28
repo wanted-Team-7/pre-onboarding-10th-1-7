@@ -24,7 +24,7 @@ export const signin = async (signinData: UserInfo) => {
 
 export const signup = async (signupData: UserInfo) => {
   try {
-    const response = await fetchClient(`${BASE_URL}${PATH_URL.AUTH}${PATH_URL.SIGNIN}`, {
+    const response = await fetchClient(`${BASE_URL}${PATH_URL.AUTH}${PATH_URL.SIGNUP}`, {
       method: 'post',
       body: JSON.stringify(signupData),
     });
