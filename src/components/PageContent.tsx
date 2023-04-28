@@ -1,4 +1,4 @@
-import classes from './components/PageContent.module.css';
+import classes from './PageContent.module.css';
 
 interface content {
   title: string;

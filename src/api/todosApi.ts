@@ -1,14 +1,12 @@
-import { TodoItem } from '../types/todos';
+import { BASE_URL, PATH_URL } from '../constants';
+import { TodoItemState } from '../types/todos';
 import { getToken } from '../utils/token';
-import { TODO_BASE_URL } from './const';
+import { fetchClient } from './fetchClient';
 
-export const getTodos = async (): Promise<TodoItem[]> => {
+export const getTodos = async (): Promise<TodoItemState[]> => {
   try {
-    const response = await fetch(TODO_BASE_URL, {
+    const response = await fetchClient(`${BASE_URL}${PATH_URL.TODOS}`, {
       method: 'get',
-      headers: {
-        authorization: `Bearer ${getToken()}`,
-      },
     });
 
     if (!response.ok) {
@@ -26,12 +24,8 @@ export const getTodos = async (): Promise<TodoItem[]> => {
 
 export const createTodo = async (todo: string): Promise<void> => {
   try {
-    const response = await fetch(TODO_BASE_URL, {
+    const response = await fetchClient(`${BASE_URL}${PATH_URL.TODOS}`, {
       method: 'post',
-      headers: {
-        authorization: `Bearer ${getToken()}`,
-        'Content-type': 'application/json',
-      },
       body: JSON.stringify({ todo }),
     });
 
@@ -50,12 +44,8 @@ export const updateTodo = async (
   isCompleted: boolean
 ): Promise<void> => {
   try {
-    const response = await fetch(`${TODO_BASE_URL}/${todoId}`, {
+    const response = await fetchClient(`${BASE_URL}${PATH_URL.TODOS}/${todoId}`, {
       method: 'put',
-      headers: {
-        authorization: `Bearer ${getToken()}`,
-        'Content-type': 'application/json',
-      },
       body: JSON.stringify({
         todo: todoText,
         isCompleted,
@@ -73,11 +63,8 @@ export const updateTodo = async (
 
 export const deleteTodo = async (todoId: number): Promise<void> => {
   try {
-    const response = await fetch(`${TODO_BASE_URL}/${todoId}`, {
+    const response = await fetchClient(`${BASE_URL}${PATH_URL.TODOS}/${todoId}`, {
       method: 'delete',
-      headers: {
-        authorization: `Bearer ${getToken()}`,
-      },
     });
 
     if (!response.ok) {

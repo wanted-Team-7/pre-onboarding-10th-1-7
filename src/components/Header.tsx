@@ -1,6 +1,7 @@
 import classes from './Header.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { getToken, removeToken } from '../utils/token';
+import { PATH_URL } from '../constants';
 
 const Header = () => {
   const isToken = getToken();
@@ -13,7 +14,7 @@ const Header = () => {
   };
   const headerContent = isToken ? (
     <ul>
-      <Link to='/todo' className={classes.link}>
+      <Link to={PATH_URL.TODO} className={classes.link}>
         할 일
       </Link>
       <div className={classes.link} onClick={logoutHandler}>
@@ -22,13 +23,13 @@ const Header = () => {
     </ul>
   ) : (
     <ul>
-      <Link to='/todo' className={classes.link}>
+      <Link to={PATH_URL.TODO} className={classes.link}>
         할 일
       </Link>
-      <Link to='/signup' className={classes.link}>
+      <Link to={PATH_URL.SIGNUP} className={classes.link}>
         회원가입
       </Link>
-      <Link to='/signin' className={classes.link}>
+      <Link to={PATH_URL.SIGNIN} className={classes.link}>
         로그인
       </Link>
     </ul>
