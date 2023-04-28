@@ -1,7 +1,7 @@
 # 원티드 프리온보딩 프론트엔드 7팀 1주차 과제
 
 - **프로젝트 기간:** 2023년 4월 25일 ~ 2023년 4월 28일
-- **배포링크:** https://deploy-preview-17--heroic-sable-ebe576.netlify.app/
+- **배포링크:** https://pre-onboarding-10th-1-7.netlify.app
 
 ## 📚 과제
 동료학습을 통해서 팀에서 생각한 원티드 프리온보딩 프론트엔드 [인턴십 선발 과제](https://github.com/walking-sunset/selection-task)의 Best Pratice를 만들고 제출해주세요.
