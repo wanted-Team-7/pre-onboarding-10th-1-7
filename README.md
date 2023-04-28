@@ -6,7 +6,7 @@
 ## 📚 과제
 동료학습을 통해서 팀에서 생각한 원티드 프리온보딩 프론트엔드 [인턴십 선발 과제](https://github.com/walking-sunset/selection-task)의 Best Pratice를 만들고 제출해주세요.
 
-> Best Practice란 팀원들이 각자의 구현방법을 설명하고 토론했을 때 팀 안에서 이 방법이 가장 효율적이라고 판단되는 것
+> Best Practice란? 팀원들이 각자의 구현방법을 설명하고 토론했을 때 팀 안에서 이 방법이 가장 효율적이라고 판단되는 것을 말한다.
 
 ## ⌨️  프로젝트 실행 방법
 
@@ -25,11 +25,14 @@ $ npm start
 
 ## ☑️ Best Practice 채택 근거
 ### [1. 유효성 검사 기능](https://github.com/wanted-Team-7/wanted-pre-onboarding-frontend-1/wiki/%EC%9C%A0%ED%9A%A8%EC%84%B1-%EA%B2%80%EC%82%AC-%EA%B8%B0%EB%8A%A5-%EA%B0%9C%EC%84%A0)
+
+> <h4> 팀원들의 구현 방법 </h4>
 1. 유효성 검사 함수를 만들고 검사가 필요한 컴포넌트에서 함수를 불러와 관련된 로직을 처리
 2. 유효성 검사 훅을 만들어 로직을 훅에서 처리. 훅이 반환한 검사 결과값과 결과 메시지를 컴포넌트에서 사용
 3. input 훅을 만들어 input 데이터와 유효성검사 로직를 이 훅에서 한 번에 처리. 훅이 반환한 input value, input 이벤트 핸들러 함수, 검사 결과값 등을 컴포넌트에서 사용
 <br />
 
+> Best Practice: <strong>유효성 검사 로직과 input 데이터를 하나의 훅으로 관리하자!</strong>
 - 효율적인 유지 보수를 고려하여 로직을 가능한 한 곳에서 다룰 수 있도록 코드를 구성하기로 하였습니다.
 - 유효성 검사가 필요한 모든 컴포넌트에서 동일한 로직이 작성되기 때문에, 관련 로직을 한 곳에서 처리하고자 훅을 만들기로 결정하였습니다.
 - 프로젝트에서 유효성 검사가 필요한 상황은 로그인/회원가입 외엔 없고, 항상 input 요소와 함께 상호작용하므로 input 훅을 생성하는 것으로 결정하였습니다.
@@ -39,21 +42,22 @@ $ npm start
 <br />
 
 ### [2. 리다이렉트 기능](https://github.com/wanted-Team-7/wanted-pre-onboarding-frontend-1/wiki/%EB%A6%AC%EB%8B%A4%EC%9D%B4%EB%A0%89%ED%8A%B8-%EA%B8%B0%EB%8A%A5-%EA%B0%9C%EC%84%A0)
+
+> <h4> 팀원들의 구현 방법 </h4>
 1. 컴포넌트에서 useNavigate 훅을 사용하여 처리
 2. 라우터 컴포넌트에서 처리 → 컴포넌트 내 naviage 등 라우팅 관련 로직 사용을 최소화하고, 라우팅 로직을 라우터 컴포넌트에서만 처리
+<br />
 
-- 논의 과정
+> Best Practice: <strong>react-router-dom의 useNavigation 훅을 사용하고, 경로는 변수화하여 관리하자!</strong>
   - 팀원들 대다수가 1번의 방식으로 구현하였으나 추후 리다이렉트 경로 변경 등 수정사항이 생길 때 모든 컴포넌트의 navigate를 수정해야하는 번거로움이 존재했습니다.
   - 2번의 방식은 라우터 컴포넌트에서만 리다이렉트 로직을 수정하면 되지만, 전역 상태 관리가 거의 필수적으로 동반되어야 하고, 리다이렉트 기능이 실제로 발생하는 컴포넌트에는 navigate 등 리다이렉트를 처리하는 코드가 존재하지 않아 로직을 이해하는데에 어려움이 있을 수 있습니다.
-
-- 결론
   - 경로 수정 등의 문제는 navigate 함수에 전달하는 인자인 경로를 변수화하여 관리하면 해결할 수 있습니다. 
 그리고 상태 관리와 가독성 등을 고려할 때 2번은 여러 문제를 낳을 수 있을 것 같다는 우려에 1번 방식과 같이 각 컴포넌트에서 useNavigate 훅을 사용하여 리다이렉트 기능을 구현하기로 하였습니다.
 <br />
 
 
 ### [3. To Do 반복되는 코드 함수로 분리](https://github.com/wanted-Team-7/wanted-pre-onboarding-frontend-1/wiki/To-Do-%EB%B0%98%EB%B3%B5%EB%90%98%EB%8A%94-%EC%BD%94%EB%93%9C-%ED%95%A8%EC%88%98%EB%A1%9C-%EB%B6%84%EB%A6%AC)
-create, update, delete todo 시에 동일하게 작성되었던 코드를 onReadTodo 함수로 분리하여 관리했습니다.
+- create, update, delete todo 시에 동일하게 작성되었던 코드를 onReadTodo 함수로 분리하여 관리했습니다.
 
 <br />
 
