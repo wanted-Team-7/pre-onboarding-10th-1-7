@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "https://wanted-preonboarding-daedaem.netlify.app/static/css/main.58e0cecf.css",
-    "main.js": "https://wanted-preonboarding-daedaem.netlify.app/static/js/main.7a95d365.js",
-    "index.html": "https://wanted-preonboarding-daedaem.netlify.app/index.html",
-    "main.58e0cecf.css.map": "https://wanted-preonboarding-daedaem.netlify.app/static/css/main.58e0cecf.css.map",
-    "main.7a95d365.js.map": "https://wanted-preonboarding-daedaem.netlify.app/static/js/main.7a95d365.js.map"
+    "main.css": "/static/css/main.02447822.css",
+    "main.js": "/static/js/main.1b28a2e2.js",
+    "index.html": "/index.html",
+    "main.02447822.css.map": "/static/css/main.02447822.css.map",
+    "main.1b28a2e2.js.map": "/static/js/main.1b28a2e2.js.map"
   },
   "entrypoints": [
-    "static/css/main.58e0cecf.css",
-    "static/js/main.7a95d365.js"
+    "static/css/main.02447822.css",
+    "static/js/main.1b28a2e2.js"
   ]
 }
