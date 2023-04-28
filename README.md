@@ -215,7 +215,8 @@ useEffect(() => {
 ### 4. 토큰 유무에 따른 fetch api header 옵션 중복 처리 문제 해결
 
 - 문제 상황
-  - fetch api 옵션 설정 부분에 토큰 유무에 따른 header 옵션을 중복으로 처리하고 있었습니다. 만약 header 옵션에 속성을 변경해야하는 상황이 발생한다면 모든  fetch api  함수의 옵션을  수정해줘야하는 상황이 발생합니다.
+  - fetch api 옵션 설정 부분에 토큰 유무에 따른 header 옵션을 중복으로 처리하고 있었습니다. 
+  - 만약 header 옵션에 속성을 변경해야하는 상황이 발생한다면 모든  fetch api  함수의 옵션을  수정해줘야하는 상황이 발생합니다.
 
 ```tsx
 export const getTodos = async (): Promise<TodoItem[]> => {
