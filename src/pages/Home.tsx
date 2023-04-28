@@ -4,7 +4,7 @@ import classes from './Home.module.css';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const title = '원티드 프리온보딩 프론트엔드 인턴십';
+  const title = '원티드 프리온보딩 프론트엔드 인턴십 test';
 
   return (
     <PageContent title={title}>
